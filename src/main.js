@@ -4,7 +4,24 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-Vue.config.productionTip = false
+/*
+* 加载重置样式
+* */
+import './assets/css/reset.css'
+
+/*
+* mint-ui引入
+* */
+
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI);
+
+
+
+
+
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({

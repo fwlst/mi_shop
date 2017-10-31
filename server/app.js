@@ -5,7 +5,9 @@ var logger = require('morgan');
 var ejs = require('ejs');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
+//  加载路由
 var index = require('./routes/index');
 var users = require('./routes/users');
 var goods = require('./routes/goods');
@@ -28,6 +30,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// 使用 session 中间件
+app.use(session({
+  secret : 'secret', // 对session id 相关的cookie 进行签名
+  resave : true,
+  saveUninitialized: false, // 是否保存未初始化的会话
+  cookie : {
+    maxAge : 1000 * 60 * 3, // 设置 session 的有效时间，单位毫秒
+  },
+}));
 
 app.use('/', index);
 app.use('/users', users);

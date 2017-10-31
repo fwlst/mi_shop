@@ -12,6 +12,8 @@
     },
     "dependencies": {
         "axios": "^0.16.2",
+        "express-session": "^1.15.6",
+        "mint-ui": "^2.2.9",
         "mongoose": "^4.12.4",
         "vue": "^2.5.2",
         "vue-lazyload": "^1.1.4",

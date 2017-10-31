@@ -4,7 +4,7 @@ let mongoose = require('mongoose');
 
 //加载模型
 let Goods = require('../models/goods');
-let User = require('../models/user');
+let User = require('../models/users');
 
 //连接数据库
 mongoose.connect('mongodb://127.0.0.1:27017/db_shop');
