@@ -47,6 +47,10 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style rel="stylesheet/less" lang="less" scoped>
   .footer {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
     .icon {
       background: url("../assets/img/spr1_5b2e09c.png") no-repeat;
       background-size: 24px 192px;

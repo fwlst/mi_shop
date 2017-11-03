@@ -215,6 +215,7 @@
     .main-container {
       padding-top: 1.5rem;
       font-size: 16px;
+      padding-bottom: 55px;
     }
 
 

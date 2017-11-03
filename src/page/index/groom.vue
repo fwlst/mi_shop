@@ -1,6 +1,23 @@
 <template>
   <section class="groom">
-    推荐
+    <ul class="groom_list">
+      <li class="groom_item">
+        <div class="pic">
+          <img src="/static/img/phone1.webp"/>
+          <div class="tag"><img src="/static/img/tag1.png"/></div>
+        </div>
+        <div class="good_info">
+          <div class="good_info_top">
+            <div class="good_name">x小米6</div>
+            <div class="good_price">￥1299</div>
+          </div>
+          <div class="good_info_bottom">
+            <div class="good_dec">x小米6</div>
+            <div class="add_cart">加入购物车</div>
+          </div>
+        </div>
+      </li>
+    </ul>
   </section>
 </template>
 
