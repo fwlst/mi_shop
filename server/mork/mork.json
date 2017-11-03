@@ -1,0 +1,70 @@
+{
+  "goods": [
+    {
+      "goodName": "小米5X 红色特别版",
+      "goodDec": "光学变焦双摄，拍人更美",
+      "goodPrice": 1499,
+      "goodStock": 2000,
+      "goodImg": "phone1.webp",
+      "goodTag": "赠送活塞耳机",
+      "goodTagImg": "tag1.png",
+      "goodType": "手机",
+      "goodGroom": true
+    },
+    {
+      "goodName": "小米Max 2",
+      "goodDec": "6.44\" 大屏，看什么都震撼",
+      "goodPrice": 1399,
+      "goodStock": 2000,
+      "goodImg": "phone2.webp",
+      "goodTag": "直降100元",
+      "goodTagImg": "tag2.png",
+      "goodType": "手机",
+      "goodGroom": true
+    },
+    {
+      "goodName": "红米5A 2GB+16GB",
+      "goodDec": "8天超长待机，137g轻巧机身",
+      "goodPrice": 599,
+      "goodStock": 2000,
+      "goodImg": "phone3.webp",
+      "goodTag": "12期免息",
+      "goodTagImg": "tag3.png",
+      "goodType": "手机",
+      "goodGroom": true
+    },
+    {
+      "goodName": "红米Note 5A 标准版",
+      "goodDec": "5.5\"高清大屏，3080mAh长续航",
+      "goodPrice": 699,
+      "goodStock": 2000,
+      "goodImg": "phone4.webp",
+      "goodTag": "直降300",
+      "goodTagImg": "tag4.png",
+      "goodType": "手机",
+      "goodGroom": true
+    },
+    {
+      "goodName": "小米Note 3 6+64GB",
+      "goodDec": "1600万美颜自拍，2倍变焦双摄",
+      "goodPrice": 2199,
+      "goodStock": 2000,
+      "goodImg": "phone5.webp",
+      "goodTag": "直降300",
+      "goodTagImg": "tag5.png",
+      "goodType": "手机",
+      "goodGroom": true
+    },
+    {
+      "goodName": "小米6 陶瓷尊享版",
+      "goodDec": "变焦双摄，拍人更美",
+      "goodPrice": 2999,
+      "goodStock": 2000,
+      "goodImg": "phone6.webp",
+      "goodTag": "赠体重秤",
+      "goodTagImg": "tag6.png",
+      "goodType": "手机",
+      "goodGroom": true
+    }
+  ]
+}

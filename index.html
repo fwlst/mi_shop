@@ -4,6 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
     <title>小米商城</title>
+    <script>
+      var docEl = document.documentElement;
+      var width = docEl.getBoundingClientRect().width;
+      var rem = width / 7.2;
+      docEl.style.fontSize = rem + 'px';
+    </script>
   </head>
   <body>
     <div id="app"></div>

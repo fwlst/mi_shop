@@ -57,8 +57,9 @@
           username: this.username,
           password: this.password
         };
-        axios.post('/users/register',param,(res)=>{
+        axios.post('/users/register',param).then((res)=>{
           console.log(res)
+          this.$toast(res.msg);
         })
       }
     }
@@ -91,7 +92,7 @@
             }
             .header_tit_txt {
               margin-top: 22px;
-              font-size: 1.2rem;
+              font-size: .5rem;
               color: #424242;
               font-weight: normal;
               text-align: center;

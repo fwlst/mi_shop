@@ -26,7 +26,7 @@
           </div>
           <div class="tip_msg">{{errMsg}}</div>
           <div class="btn_g">
-            <div class="btn login">登录</div>
+            <div class="btn login" @click="login">登录</div>
             <div class="btn register">注册</div>
           </div>
         </div>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     name: '',
     data() {
@@ -50,8 +51,23 @@
     mounted() {
       // 代替ready
     },
-    methods: {},
-    components: {}
+    methods: {
+      login(){
+        let param = {
+          username: this.username,
+          password: this.password
+        };
+        axios.post('/users/login',param).then((res)=>{
+          if(res.data.code === 200){
+            this.$router.push({
+              path: '/groom'
+            })
+          }else {
+            this.$toast(res.data.msg);
+          }
+        })
+      }
+    }
   }
 </script>
 
@@ -81,7 +97,7 @@
             }
             .header_tit_txt {
               margin-top: 22px;
-              font-size: 1.2rem;
+              font-size: .5rem;
               color: #424242;
               font-weight: normal;
               text-align: center;

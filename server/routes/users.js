@@ -84,11 +84,11 @@ router.post('/login', (req, res, next) => {
       } else {
         if (doc) {
           if (doc.userPwd == param.userPwd) {
-            req.session.userName = param.username;
+            req.session.userName = param.userName;
             res.json({
               code: 200,
               data: {
-                session: doc,
+                session: param.userName,
               },
               msg: '登录成功'
             });

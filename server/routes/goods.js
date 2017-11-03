@@ -10,66 +10,169 @@ let User = require('../models/users');
 mongoose.connect('mongodb://127.0.0.1:27017/db_shop');
 
 mongoose.connection.on('connected', () => {
-    console.log('mongodb connected success');
+  console.log('mongodb connected success');
 });
 
 //数据库连接失败监听
 mongoose.connection.on('error', () => {
-    console.log('mongodb connected fail');
+  console.log('mongodb connected fail');
 });
 
 
 //数据库断开监听
 mongoose.connection.on('disconnected', () => {
-    console.log('mongodb connected disconnected');
+  console.log('mongodb connected disconnected');
 });
 
 
-/* goods 查询商品列表路由 */
-router.get('/', (req, res) => {
-    let page = parseInt(req.query.page);
-    let pageSize = parseInt(req.query.pageSize);
-    let sort = parseInt(req.query.sort);
-    let skip = pageSize * (page - 1);
-    let priceChecked = req.query.priceChecked;
+/*
+* 添加商品路由
+* */
+router.post('/addGood', (req, res,next) => {
 
-    let params = {};
+  /*添加模拟数据*/
+  /*
+  let goods = require('../mork/mork.json').goods;
+  goods.forEach((arr,index)=>{
+    Goods.create(arr, (createErr, createDoc) => {
 
+    })
+  })
 
-    if (priceChecked != 'all') {
-        priceChecked = JSON.parse(priceChecked);
-        let priceGT = Number(priceChecked.startPrice),
-            priceLte = Number(priceChecked.endPrice);
+  res.json({
+    code: 200,
+    data: '',
+    msg: '商品添加成功'
+  });
+  */
 
-        params = {
-            productPrice: {
-                $gt: priceGT,
-                $lte: priceLte
-            }
-        }
-    }
-    Goods.find(params).skip(skip).limit(pageSize).sort({productPrice: sort}).exec((err, doc) => {
-        if (err) {
-            res.json({
+  let good = req.body.good;
+  if (good.goodName === '') {
+    res.json({
+      code: 600,
+      msg: '商品名称不能为空'
+    })
+  } else if (good.goodPrice === '') {
+    res.json({
+      code: 600,
+      msg: '商品价格不能为空'
+    })
+  } else if (good.goodImg === '') {
+    res.json({
+      code: 600,
+      msg: '商品图片不能为空'
+    })
+  } else {
+    Goods.findOne({goodName: good.goodName}, (err, doc) => {
+      if (err) {
+        res.json({
+          code: 600,
+          msg: err.message
+        })
+      } else {
+        if (doc) {
+          res.json({
+            code: 600,
+            msg: '该商品已存在'
+          });
+        } else {
+          let goods = require('../mork/mork.json');
+          console.log(goods);
+          Goods.create(good, (createErr, createDoc) => {
+            if (createErr) {
+              res.json({
                 code: 600,
                 msg: err.message
-            })
-        } else {
-            res.json({
+              })
+            } else {
+              res.json({
                 code: 200,
-                data: {
-                    count: doc.length,
-                    goodList: doc
-                },
-                msg: 'OK'
-            });
+                data: createDoc,
+                msg: '商品添加成功'
+              });
+            }
+          })
         }
-    });
+      }
+    })
+  }
 });
+
+
+/*
+* 推荐商品路由列表
+* */
+router.post('/groom', (req, res) => {
+  let params = {
+    goodGroom: true
+  };
+  Goods.find(params, (err, doc) => {
+    if (err) {
+      res.json({
+        code: 600,
+        msg: err.message
+      })
+    } else {
+      res.json({
+        code: 200,
+        data: {
+          count: doc.length,
+          goodList: doc
+        },
+        msg: 'OK'
+      });
+    }
+  })
+});
+
+
+/*
+* goods 查询商品列表路由
+* */
+/*router.get('/groom', (req, res) => {
+  let page = parseInt(req.query.page);
+  let pageSize = parseInt(req.query.pageSize);
+  let sort = parseInt(req.query.sort);
+  let skip = pageSize * (page - 1);
+  let priceChecked = req.query.priceChecked;
+
+  let params = {};
+
+
+  if (priceChecked != 'all') {
+    priceChecked = JSON.parse(priceChecked);
+    let priceGT = Number(priceChecked.startPrice),
+      priceLte = Number(priceChecked.endPrice);
+
+    params = {
+      productPrice: {
+        $gt: priceGT,
+        $lte: priceLte
+      }
+    }
+  }
+  Goods.find(params).skip(skip).limit(pageSize).sort({productPrice: sort}).exec((err, doc) => {
+    if (err) {
+      res.json({
+        code: 600,
+        msg: err.message
+      })
+    } else {
+      res.json({
+        code: 200,
+        data: {
+          count: doc.length,
+          goodList: doc
+        },
+        msg: 'OK'
+      });
+    }
+  });
+});*/
 
 
 /* goods 添加购物车路由 */
-router.post('/addCart', (req, res) => {
+/*router.post('/addCart', (req, res) => {
     let userId = '1007',
         productId = Number(req.body.productId);
     User.findOne({userId: userId}, (err1, userDoc) => {
@@ -143,7 +246,7 @@ router.post('/addCart', (req, res) => {
     })
 
 
-});
+});*/
 
 
 module.exports = router;

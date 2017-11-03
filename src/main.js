@@ -12,7 +12,6 @@ import './assets/css/reset.css'
 /*
 * mint-ui引入
 * */
-
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI);
