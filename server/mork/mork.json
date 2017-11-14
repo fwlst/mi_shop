@@ -31,7 +31,7 @@
       "goodTag": "12期免息",
       "goodTagImg": "tag3.png",
       "goodType": "手机",
-      "goodGroom": true
+      "goodGroom": false
     },
     {
       "goodName": "红米Note 5A 标准版",
@@ -42,7 +42,7 @@
       "goodTag": "直降300",
       "goodTagImg": "tag4.png",
       "goodType": "手机",
-      "goodGroom": true
+      "goodGroom": false
     },
     {
       "goodName": "小米Note 3 6+64GB",
@@ -53,7 +53,7 @@
       "goodTag": "直降300",
       "goodTagImg": "tag5.png",
       "goodType": "手机",
-      "goodGroom": true
+      "goodGroom": false
     },
     {
       "goodName": "小米6 陶瓷尊享版",
@@ -64,6 +64,237 @@
       "goodTag": "赠体重秤",
       "goodTagImg": "tag6.png",
       "goodType": "手机",
+      "goodGroom": true
+    },
+    {
+      "goodName": "小米MIX 2  全面屏2.0",
+      "goodDec": "全面屏2.0，骁龙835旗舰处理器 ",
+      "goodPrice": 3299,
+      "goodStock": 2000,
+      "goodImg": "phone7.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "手机",
+      "goodGroom": true
+    },
+    {
+      "goodName": "小米Note 3 吴亦凡限量版",
+      "goodDec": "背部镌刻 Kris Wu，吴亦凡参与设计",
+      "goodPrice": 2399,
+      "goodStock": 2000,
+      "goodImg": "phone8.webp",
+      "goodTag": "赠体重秤",
+      "goodTagImg": "tag6",
+      "goodType": "手机",
+      "goodGroom": true
+    },
+    {
+      "goodName": "红米Note 4X",
+      "goodDec": "多彩金属，4100mAh超长续航，骁龙625处理器",
+      "goodPrice": 999,
+      "goodStock": 2000,
+      "goodImg": "phone9.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "手机",
+      "goodGroom": false
+    },
+    {
+      "goodName": "小米笔记本Pro 15.6英寸",
+      "goodDec": "全金属强化机身搭配2G独显 指纹解锁",
+      "goodPrice": 5599,
+      "goodStock": 2000,
+      "goodImg": "Mac1.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "电脑",
+      "goodGroom": true
+    },
+    {
+      "goodName": "小米笔记本Air 13.3英寸",
+      "goodDec": "全金属超薄机身搭配独显",
+      "goodPrice": 5199,
+      "goodStock": 2000,
+      "goodImg": "Mac2.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "电脑",
+      "goodGroom": false
+    },
+    {
+      "goodName": "小米笔记本Air 12.5英寸",
+      "goodDec": "像杂志一般轻薄",
+      "goodPrice": 3599,
+      "goodStock": 2000,
+      "goodImg": "Mac3.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "电脑",
+      "goodGroom": false
+    },
+    {
+      "goodName": "米家激光投影电视",
+      "goodDec": "最大150英寸投影画面，让家成为你的私人影院",
+      "goodPrice": 9999,
+      "goodStock": 2000,
+      "goodImg": "intelligence1.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "智能",
+      "goodGroom": true
+    },
+    {
+      "goodName": "米家扫地机器人",
+      "goodDec": "智能路径规划，大风压澎湃吸力，远程控制",
+      "goodPrice": 1699,
+      "goodStock": 2000,
+      "goodImg": "intelligence2.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "智能",
+      "goodGroom": true
+    },
+    {
+      "goodName": "小米AI音箱",
+      "goodDec": "能播音乐、讲故事、查路况、设闹钟，还能控制智能设备",
+      "goodPrice": 299,
+      "goodStock": 2000,
+      "goodImg": "intelligence3.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "智能",
+      "goodGroom": true
+    },
+    {
+      "goodName": "小米WiFi电力猫",
+      "goodDec": "电路自有捷径WiFi贯穿全家",
+      "goodPrice": 249,
+      "goodStock": 2000,
+      "goodImg": "intelligence4.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "智能",
+      "goodGroom": true
+    },
+    {
+      "goodName": "米家IH电饭煲 3L",
+      "goodDec": "多才多艺的智能电饭煲",
+      "goodPrice": 399,
+      "goodStock": 2000,
+      "goodImg": "intelligence5.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "智能",
+      "goodGroom": false
+    },
+    {
+      "goodName": "小米净水器厨上式增强版",
+      "goodDec": "小米净水器厨上式增强版",
+      "goodPrice": 1499,
+      "goodStock": 2000,
+      "goodImg": "intelligence6.jpg",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "智能",
+      "goodGroom": false
+    },
+    {
+      "goodName": "小米米家电动滑板车",
+      "goodDec": "30 公里超长续航，一路美景尽收眼底",
+      "goodPrice": 1999,
+      "goodStock": 2000,
+      "goodImg": "intelligence7.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "智能",
+      "goodGroom": true
+    },
+    {
+      "goodName": "小米电视4 55英寸",
+      "goodDec": "极超薄高端旗舰电视",
+      "goodPrice": 4999,
+      "goodStock": 2000,
+      "goodImg": "TV1.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "电视",
+      "goodGroom": true
+    },
+    {
+      "goodName": "小米电视4A 55英寸",
+      "goodDec": "4K/HDR，64位处理器",
+      "goodPrice": 2999,
+      "goodStock": 2000,
+      "goodImg": "TV2.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "电视",
+      "goodGroom": false
+    },
+    {
+      "goodName": "小米电视4C 55英寸",
+      "goodDec": "超窄边 人工智能系统patchwall",
+      "goodPrice": 3099,
+      "goodStock": 2000,
+      "goodImg": "TV3.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "电视",
+      "goodGroom": false
+    },
+    {
+      "goodName": "小米电视4C 43英寸",
+      "goodDec": "超窄边 人工智能系统patchwall",
+      "goodPrice": 2099,
+      "goodStock": 2000,
+      "goodImg": "TV4.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "电视",
+      "goodGroom": true
+    },
+    {
+      "goodName": "小米电视4 65英寸",
+      "goodDec": "杜比全景声影院电视",
+      "goodPrice": 9999,
+      "goodStock": 2000,
+      "goodImg": "TV5.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "电视",
+      "goodGroom": true
+    },
+    {
+      "goodName": "小米电视3S 65\" 曲面",
+      "goodDec": "原装三星4K屏，超薄金属机身",
+      "goodPrice": 9299,
+      "goodStock": 2000,
+      "goodImg": "TV6.jpg",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "电视",
+      "goodGroom": true
+    },
+    {
+      "goodName": "小米盒子3c",
+      "goodDec": "4K 人工智能机顶盒",
+      "goodPrice": 299,
+      "goodStock": 2000,
+      "goodImg": "TV7.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "电视",
+      "goodGroom": false
+    },
+    {
+      "goodName": "小米盒子3 增强版 ",
+      "goodDec": "高端 4K 网络机顶盒",
+      "goodPrice": 399,
+      "goodStock": 2000,
+      "goodImg": "TV8.webp",
+      "goodTag": "",
+      "goodTagImg": "",
+      "goodType": "电视",
       "goodGroom": true
     }
   ]
