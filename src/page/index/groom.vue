@@ -1,5 +1,5 @@
 <template>
-  <section class="groom">
+  <section class="groom" ref="groomList">
     <ul class="groom_list">
       <good-card v-for="(item,index) in groomList"
                  :key="index"
@@ -12,11 +12,14 @@
 <script>
   import axios from 'axios'
   import goodCard from '@/components/goodCard'
+  import BScroll from 'better-scroll'
 
   export default {
     name: '',
     data() {
       return {
+        pageIndex: 1,
+        pageSize: 5,
         groomList: []
       }
     },
@@ -28,14 +31,36 @@
         color: '#f95b07'
       });
       this.getGroomList();
+
     },
     methods: {
+
       getGroomList() {
-        axios.post('/goods/groom').then((res) => {
+        let params = {
+          goodGroom: true,
+          pageIndex: this.pageIndex,
+          pageSize: this.pageSize
+        };
+        axios.post('/goods/goodsList', params).then((res) => {
           let data = res.data;
           if (data.code === 200) {
             setTimeout(() => {
-              this.groomList = data.data.goodList;
+              if (data.data.goodList.length) {
+                this.groomList = data.data.goodList;
+                this.$nextTick(() => {
+                  if (!this.scroll) {
+                    this.scroll = new BScroll(this.$refs.groomList, {
+                      scrollEnd(e){
+                        console.log(e);
+                      }
+                    });
+                  } else {
+                    this.scroll.refresh();
+                  }
+                })
+              } else {
+                this.$toast('没有相关推荐')
+              }
               this.$indicator.close();
             }, 2000)
           }

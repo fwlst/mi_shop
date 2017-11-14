@@ -59,7 +59,7 @@
       padding: .3rem;
       .good_info_top{
         display: flex;
-        font-size: .4rem;
+        font-size: .36rem;
         .good_name{
           flex: 1;
           color: #000;
@@ -80,7 +80,7 @@
         .add_cart{
           flex: 0 0 100px;
           text-align: center;
-          font-size: .36rem;
+          font-size: .26rem;
           color: #fff;
           height: .65rem;
           line-height: .65rem;
