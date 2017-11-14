@@ -1,48 +1,56 @@
 <template>
   <section class="groom">
     <ul class="groom_list">
-      <li class="groom_item">
-        <div class="pic">
-          <img src="/static/img/phone1.webp"/>
-          <div class="tag"><img src="/static/img/tag1.png"/></div>
-        </div>
-        <div class="good_info">
-          <div class="good_info_top">
-            <div class="good_name">x小米6</div>
-            <div class="good_price">￥1299</div>
-          </div>
-          <div class="good_info_bottom">
-            <div class="good_dec">x小米6</div>
-            <div class="add_cart">加入购物车</div>
-          </div>
-        </div>
-      </li>
+      <good-card v-for="(item,index) in groomList"
+                 :key="index"
+                 :good="item"
+      ></good-card>
     </ul>
   </section>
 </template>
 
 <script>
   import axios from 'axios'
+  import goodCard from '@/components/goodCard'
+
   export default {
     name: '',
     data() {
-      return {}
+      return {
+        groomList: []
+      }
     },
     mounted() {
       // 代替ready
+      this.$indicator.open({
+        text: '加载中...',
+        spinnerType: 'double-bounce',
+        color: '#f95b07'
+      });
       this.getGroomList();
     },
     methods: {
-      getGroomList(){
-        axios.post('/goods/groom').then((res)=>{
-          console.log(res)
+      getGroomList() {
+        axios.post('/goods/groom').then((res) => {
+          let data = res.data;
+          if (data.code === 200) {
+            setTimeout(() => {
+              this.groomList = data.data.goodList;
+              this.$indicator.close();
+            }, 2000)
+          }
         })
       }
+    },
+    components: {
+      goodCard
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style rel="stylesheet/less" lang="less" scoped>
+  .groom {
 
+  }
 </style>

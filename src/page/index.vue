@@ -213,7 +213,7 @@
       }
     }
     .main-container {
-      padding-top: 1.5rem;
+      padding-top: 1.45rem;
       font-size: 16px;
       padding-bottom: 55px;
     }
