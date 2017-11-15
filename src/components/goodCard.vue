@@ -1,8 +1,8 @@
 <template>
-  <li class="good_card">
+  <li class="good_card" @click="clickLi">
     <div class="pic">
-      <img v-lazy="'/static/img/' + good.goodImg"/>
-      <div class="tag"><img :src="'/static/img/' + good.goodTagImg "/></div>
+      <img v-lazy="'/static/img/' + good.goodImg" @load="loadImg" />
+      <div class="tag" v-if="good.goodTagImg"><img :src="'/static/img/' + good.goodTagImg " /></div>
     </div>
     <div class="good_info">
       <div class="good_info_top">
@@ -32,7 +32,14 @@
     mounted() {
       // 代替ready
     },
-    methods: {},
+    methods: {
+      loadImg(){
+        this.$emit('onLoadImg');
+      },
+      clickLi(){
+        this.$emit('clickItem');
+      }
+    },
     components: {}
   }
 </script>
