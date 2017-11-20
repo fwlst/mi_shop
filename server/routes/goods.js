@@ -102,6 +102,52 @@ router.post('/addGood', (req, res, next) => {
 
 });
 
+/*
+* 加入购物车
+* */
+
+router.post('/addCart', (req, res) => {
+  let param = {
+    userName: req.session.userName,
+  };
+
+  User.findOne(param, (err, doc) => {
+    if (err) {
+      res.json({
+        code: 600,
+        msg: err.message
+      })
+    } else {
+      if (doc) {
+        let cartNub = 0;
+        let cartList = doc.cartList;
+        cartList.forEach((arr,index)=>{
+          cartNub += arr.goodNum;
+        });
+        res.json({
+          code: 200,
+          data: {
+            cartNub: cartNub,
+            cartInfo: cartList,
+          },
+          msg: 'OK'
+        });
+      } else {
+        res.json({
+          code: 600,
+          data: '',
+          msg: '您的购物车还是空的'
+        });
+      }
+    }
+  });
+});
+
+
+
+
+
+
 
 /*
 * 推荐商品路由列表

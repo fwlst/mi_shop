@@ -11,13 +11,14 @@
       </div>
       <div class="good_info_bottom">
         <div class="good_dec">{{good.goodDec}}</div>
-        <div class="add_cart">加入购物车</div>
+        <add-cart ref="addCart" :goodId="good.goodId" @click.stop.prevent="addCart"></add-cart>
       </div>
     </div>
   </li>
 </template>
 
 <script>
+  import addCart from '@/components/addCart'
   export default {
     name: '',
     data() {
@@ -40,7 +41,9 @@
         this.$emit('clickItem');
       }
     },
-    components: {}
+    components: {
+      addCart
+    }
   }
 </script>
 

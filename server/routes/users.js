@@ -12,12 +12,12 @@ router.post('/register', (req, res, next) => {
     userPwd: req.body.password
   };
 
-  if (param.userName == '') {
+  if (param.userName === '') {
     res.json({
       code: 600,
       msg: '用户名不能为空'
     })
-  } else if (param.userPwd == '') {
+  } else if (param.userPwd === '') {
     res.json({
       code: 600,
       msg: '密码不能为空'
@@ -58,18 +58,20 @@ router.post('/register', (req, res, next) => {
   }
 });
 
-
+/*
+* 登录接口
+* */
 router.post('/login', (req, res, next) => {
   let param = {
     userName: req.body.username,
     userPwd: req.body.password
   };
-  if (param.userName == '') {
+  if (param.userName === '') {
     res.json({
       code: 600,
       msg: '用户名不能为空'
     })
-  } else if (param.userPwd == '') {
+  } else if (param.userPwd === '') {
     res.json({
       code: 600,
       msg: '密码不能为空'
@@ -83,7 +85,7 @@ router.post('/login', (req, res, next) => {
         })
       } else {
         if (doc) {
-          if (doc.userPwd == param.userPwd) {
+          if (doc.userPwd === param.userPwd) {
             req.session.userName = param.userName;
             res.json({
               code: 200,
@@ -92,7 +94,7 @@ router.post('/login', (req, res, next) => {
               },
               msg: '登录成功'
             });
-          }else {
+          } else {
             res.json({
               code: 600,
               data: '',
@@ -109,6 +111,46 @@ router.post('/login', (req, res, next) => {
       }
     });
   }
+});
+
+/*
+* 购物车详情接口
+* */
+router.post('/cartInfo', (req, res, next) => {
+  let param = {
+    userName: req.session.userName,
+  };
+
+  User.findOne(param, (err, doc) => {
+    if (err) {
+      res.json({
+        code: 600,
+        msg: err.message
+      })
+    } else {
+      if (doc) {
+        let cartNub = 0;
+        let cartList = doc.cartList;
+        cartList.forEach((arr,index)=>{
+          cartNub += arr.goodNum;
+        });
+        res.json({
+          code: 200,
+          data: {
+            cartNub: cartNub,
+            cartInfo: cartList,
+          },
+          msg: 'OK'
+        });
+      } else {
+        res.json({
+          code: 600,
+          data: '',
+          msg: '您的购物车还是空的'
+        });
+      }
+    }
+  });
 });
 
 

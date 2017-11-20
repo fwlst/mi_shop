@@ -27,7 +27,7 @@
           <div class="tip_msg">{{errMsg}}</div>
           <div class="btn_g">
             <div class="btn login" @click="login">登录</div>
-            <div class="btn register">注册</div>
+            <router-link tag="div" to="/register" class="btn register">注册</router-link>
           </div>
         </div>
       </div>
@@ -57,10 +57,12 @@
           username: this.username,
           password: this.password
         };
+        console.log(this.$route.query)
         axios.post('/users/login',param).then((res)=>{
           if(res.data.code === 200){
+            sessionStorage.setItem('userName' , res.data.data.session);
             this.$router.push({
-              path: '/groom'
+              path: this.$route.query.redirect
             })
           }else {
             this.$toast(res.data.msg);

@@ -65,15 +65,24 @@ export default new Router({
     },{
       path: '/cart',
       name: 'Cart',
-      component: Cart
+      component: Cart,
+      meta: {
+        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      },
     },{
       path: '/user',
       name: 'User',
-      component: User
+      component: User,
+      meta: {
+        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      },
     },{
       path: '/addGood',
       name: 'AddGood',
-      component: AddGood
+      component: AddGood,
+      meta: {
+        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      },
     }
   ]
 })

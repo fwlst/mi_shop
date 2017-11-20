@@ -1,5 +1,5 @@
 <template>
-  <section class="groom" ref="groomList">
+  <scroll class="groom" ref="groomList" :pullup="true" @pullup="pullup">
     <ul class="groom_list">
       <good-card v-for="(item,index) in groomList"
                  :key="index"
@@ -8,13 +8,14 @@
                  @clickItem="jumpDetails(index)"
       ></good-card>
     </ul>
-  </section>
+  </scroll>
 </template>
 
 <script>
   import axios from 'axios'
   import goodCard from '@/components/goodCard'
-  import BScroll from 'better-scroll'
+  import scroll from '@/components/scroll'
+  //import BScroll from 'better-scroll'
 
   export default {
     name: '',
@@ -22,6 +23,7 @@
       return {
         pageIndex: 1,
         pageSize: 5,
+        isPullDown: false,
         groomList: []
       }
     },
@@ -32,21 +34,7 @@
     methods: {
       //初始化局部滚动组件
       _initScroll() {
-        if (!this.scroll) {
-          this.scroll = new BScroll(this.$refs.groomList, {
-            click: true,
-            tap: true,
-            pullUpLoad: true,
-          });
-          this.scroll.on('scrollEnd', (e) => {
-            // 滚动到底部
-            if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
-              this.getGroomList();
-            }
-          })
-        } else {
-          this.scroll.refresh()
-        }
+          this.$refs.groomList.refresh();
       },
       //获取推荐列表
       getGroomList() {
@@ -69,11 +57,20 @@
                 this._initScroll();
               }, 20)
             } else {
-              this.$toast('我是有底线的人')
+              this.isPullDown = true;
             }
             this.$indicator.close();
           }
         })
+      },
+
+      //滚动到底部
+      pullup(){
+        if(this.isPullDown){
+          this.$toast('我是有底线的人')
+        }else {
+          this.getGroomList();
+        }
       },
 
 
@@ -84,7 +81,8 @@
 
     },
     components: {
-      goodCard
+      goodCard,
+      scroll
     }
   }
 </script>

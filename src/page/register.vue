@@ -58,8 +58,12 @@
           password: this.password
         };
         axios.post('/users/register',param).then((res)=>{
-          console.log(res)
-          this.$toast(res.msg);
+          this.$toast(res.data.msg);
+          if(res.data.code === 200){
+            this.$router.push({
+              path: '/login'
+            })
+          }
         })
       }
     }

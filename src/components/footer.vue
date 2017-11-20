@@ -5,9 +5,10 @@
         <span slot="icon" class="icon icon-home"></span>
         首页
       </mt-tab-item>
-      <mt-tab-item id="/cart">
+      <mt-tab-item id="/cart" class="cart_item">
         <span slot="icon" class="icon icon-cart"></span>
         购物车
+        <mt-badge v-if="cartNub" class="cart_nub"  size="small" color="#FF5722">{{cartNub}}</mt-badge>
       </mt-tab-item>
       <mt-tab-item id="/user">
         <span slot="icon" class="icon icon-user"></span>
@@ -22,12 +23,15 @@
     name: '',
     data() {
       return {
-        selectedP: ''
+        selectedP: '',
       }
     },
     props: {
       selected: {
         type: String
+      },
+      cartNub: {
+        type: Number
       }
     },
     mounted() {
@@ -65,6 +69,15 @@
         background-position-y: -120px;
       }
 
+    }
+    .cart_item{
+      position: relative;
+      .cart_nub{
+        position: absolute;
+        top:0;
+        right: 30%;
+
+      }
     }
 
     .mint-tabbar {
