@@ -11,7 +11,7 @@
       </div>
       <div class="good_info_bottom">
         <div class="good_dec">{{good.goodDec}}</div>
-        <add-cart ref="addCart" :goodId="good.goodId" @click.stop.prevent="addCart"></add-cart>
+        <add-cart ref="addCart" :goodId="good._id" :redirect="redirect" @click.stop.prevent="addCart"></add-cart>
       </div>
     </div>
   </li>
@@ -29,6 +29,9 @@
       good: {
         type: Object
       },
+      redirect: {
+        type: String
+      }
     },
     mounted() {
       // 代替ready

@@ -15,6 +15,9 @@
       goodId: {
         type: String
       },
+      redirect: {
+        type: String
+      }
     },
     mounted() {
       // 代替ready
@@ -26,8 +29,19 @@
         };
         axios.post('/goods/addCart',param).then((res)=>{
           if(res.data.code === 200){
-            this.$router.push({
-              path: '/groom'
+            this.$toast(res.data.data);
+          } else if (res.data.code === 604) {
+            this.$messagebox({
+              title: '提示',
+              message: '您没有登录，立即去登陆',
+              showCancelButton: true
+            }).then((action) => {
+              if (action === 'confirm') {
+                this.$router.push({
+                  path: '/login',
+                  query: {redirect: this.redirect}
+                })
+              }
             })
           }else {
             this.$toast(res.data.msg);

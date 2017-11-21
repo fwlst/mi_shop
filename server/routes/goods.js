@@ -107,46 +107,78 @@ router.post('/addGood', (req, res, next) => {
 * */
 
 router.post('/addCart', (req, res) => {
-  let param = {
-    userName: req.session.userName,
-  };
-
-  User.findOne(param, (err, doc) => {
-    if (err) {
+  let userName = 'fwlst1';
+  let goodId = req.body.goodId;
+  User.findOne({userName: userName}, (err1, userDoc) => {
+    if (err1) {
       res.json({
         code: 600,
-        msg: err.message
+        msg: err1.message
       })
     } else {
-      if (doc) {
-        let cartNub = 0;
-        let cartList = doc.cartList;
-        cartList.forEach((arr,index)=>{
-          cartNub += arr.goodNum;
+      if (userDoc) {
+        let goodItem = '';
+        userDoc.cartList.forEach((arr, index) => {
+          if (arr._id.toString() === goodId) {
+            goodItem = arr;
+            arr.goodNum++;
+          }
         });
-        res.json({
-          code: 200,
-          data: {
-            cartNub: cartNub,
-            cartInfo: cartList,
-          },
-          msg: 'OK'
-        });
-      } else {
-        res.json({
-          code: 600,
-          data: '',
-          msg: '您的购物车还是空的'
-        });
+
+
+        if (goodItem) {
+          userDoc.save((err3, doc) => {
+            if (err3) {
+              res.json({
+                code: 600,
+                msg: err3.message
+              })
+            } else {
+              res.json({
+                code: 200,
+                data: '添加成功',
+                msg: 'OK'
+              });
+            }
+          })
+        } else {
+          Goods.findOne({_id: goodId}, (err2, goodDoc) => {
+            if (err2) {
+              res.json({
+                code: 600,
+                msg: err2.message
+              })
+            } else {
+              if (goodDoc) {
+                let aa = goodDoc;
+                aa.goodNum = 1;
+                aa.checked = true;
+                console.log(aa);
+                userDoc.cartList.push(aa);
+                userDoc.save((err3, doc) => {
+                  if (err3) {
+                    res.json({
+                      code: 600,
+                      msg: err3.message
+                    })
+                  } else {
+                    res.json({
+                      code: 200,
+                      data: '添加成功',
+                      msg: 'OK'
+                    });
+                  }
+                })
+              }
+            }
+          })
+        }
+
+
       }
     }
-  });
+  })
 });
-
-
-
-
-
 
 
 /*

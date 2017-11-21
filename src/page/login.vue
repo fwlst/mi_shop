@@ -57,12 +57,12 @@
           username: this.username,
           password: this.password
         };
-        console.log(this.$route.query)
+        let redirect = this.$route.query.redirect === undefined ? '/' : this.$route.query.redirect;
         axios.post('/users/login',param).then((res)=>{
           if(res.data.code === 200){
             sessionStorage.setItem('userName' , res.data.data.session);
             this.$router.push({
-              path: this.$route.query.redirect
+              path: redirect
             })
           }else {
             this.$toast(res.data.msg);

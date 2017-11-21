@@ -4,6 +4,7 @@
       <good-card v-for="(item,index) in groomList"
                  :key="index"
                  :good="item"
+                 redirect="/groom"
                  @onLoadImg="_initScroll"
                  @clickItem="jumpDetails(index)"
       ></good-card>

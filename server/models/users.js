@@ -4,16 +4,7 @@ var userSchema =  new mongoose.Schema({
     userName: String,
     userPwd: String,
     orderList: Array,
-    cartList: [
-        {
-            productId:String,
-            productName: String,
-            productPrice: Number,
-            productImg: String,
-            checked: Boolean,
-            productNum: String
-        }
-    ],
+    cartList: Array,
     addressList: Array
 });
 

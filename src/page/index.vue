@@ -14,8 +14,7 @@
         <div class="swipe-tabs slick-slider">
           <div aria-live="polite" class="slick-list">
             <div class="slick-track">
-              <router-link tag="div" v-for="(item,index) in subHeader" :to="item.url" class="swipe-tab slick-slide"
-                           v-text="item.name" :key="index"></router-link>
+              <router-link tag="div" v-for="(item,index) in subHeader" :to="item.url" class="swipe-tab slick-slide" v-text="item.name" :key="index"></router-link>
             </div>
           </div>
         </div>
