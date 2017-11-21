@@ -107,7 +107,7 @@ router.post('/addGood', (req, res, next) => {
 * */
 
 router.post('/addCart', (req, res) => {
-  let userName = 'fwlst1';
+  let userName = req.session.userName;
   let goodId = req.body.goodId;
   User.findOne({userName: userName}, (err1, userDoc) => {
     if (err1) {
@@ -121,13 +121,16 @@ router.post('/addCart', (req, res) => {
         userDoc.cartList.forEach((arr, index) => {
           if (arr._id.toString() === goodId) {
             goodItem = arr;
-            arr.goodNum++;
+            userDoc.cartList[index].goodNum++
+            //arr.goodNum++;
+            console.log(arr.goodNum);
           }
         });
 
 
         if (goodItem) {
           userDoc.save((err3, doc) => {
+            console.log(doc)
             if (err3) {
               res.json({
                 code: 600,

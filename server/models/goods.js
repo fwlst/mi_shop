@@ -11,7 +11,7 @@ let goodSchema = new Schema({
   goodType: String,   //类型
   goodGroom: Boolean, //推荐
   checked: Boolean,   //是否选中
-  goodNum: String     //选中数量
+  goodNum: Number     //选中数量
 });
 
 
