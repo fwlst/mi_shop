@@ -48,11 +48,12 @@ app.use(function (req, res, next) {
     if(req.originalUrl === '/users/login' || req.originalUrl === '/users/logout' || req.originalUrl === '/users/register' || req.originalUrl === '/goods/goodsList'){
       next();
     }else {
-      res.json({
+      next();
+      /*res.json({
         code: 604,
         data: '',
         msg: '您还没有登录'
-      })
+      })*/
     }
   }
 

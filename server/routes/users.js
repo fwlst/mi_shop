@@ -23,7 +23,7 @@ router.post('/register', (req, res, next) => {
       msg: '密码不能为空'
     })
   } else {
-    User.findOne({userName: param.userName}, (err, doc) => {
+    User.findOne({userName: param.userName}).then((doc,err) => {
       if (err) {
         res.json({
           code: 600,
@@ -36,7 +36,7 @@ router.post('/register', (req, res, next) => {
             msg: '用户已存在'
           });
         } else {
-          User.create(param, (createErr, createDoc) => {
+          User.create(param).then((createErr, createDoc) => {
             if (createErr) {
               res.json({
                 code: 600,
@@ -77,7 +77,7 @@ router.post('/login', (req, res, next) => {
       msg: '密码不能为空'
     })
   } else {
-    User.findOne({userName: param.userName}, (err, doc) => {
+    User.findOne({userName: param.userName}).then((doc,err) => {
       if (err) {
         res.json({
           code: 600,
@@ -118,10 +118,10 @@ router.post('/login', (req, res, next) => {
 * */
 router.post('/cartInfo', (req, res, next) => {
   let param = {
-    userName: req.session.userName,
+    userName: req.session.userName || 'fwlst',
   };
 
-  User.findOne(param, (err, doc) => {
+  User.findOne(param).then((doc,err) => {
     if (err) {
       res.json({
         code: 600,

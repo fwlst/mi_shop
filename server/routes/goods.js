@@ -7,7 +7,9 @@ let Goods = require('../models/goods');
 let User = require('../models/users');
 
 //连接数据库
-mongoose.connect('mongodb://127.0.0.1:27017/db_shop');
+mongoose.connect('mongodb://127.0.0.1:27017/db_shop', {
+  useMongoClient: true,
+});
 
 mongoose.connection.on('connected', () => {
   console.log('mongodb connected success');
@@ -32,10 +34,8 @@ router.post('/addGood', (req, res, next) => {
 
   /*添加模拟数据*/
   let goods = require('../mork/mork.json').goods;
-  goods.forEach((arr, index) => {
-    Goods.create(arr, (createErr, createDoc) => {
-
-    })
+  goods.forEach((arr) => {
+    Goods.create(arr)
   });
 
   res.json({
@@ -107,9 +107,48 @@ router.post('/addGood', (req, res, next) => {
 * */
 
 router.post('/addCart', (req, res) => {
-  let userName = req.session.userName;
+  let userName = req.session.userName || 'fwlst';
   let goodId = req.body.goodId;
-  User.findOne({userName: userName}, (err1, userDoc) => {
+
+  User.findOne({userName: userName}).then((doc, err) => {
+    if (doc) {
+      let goodItem = '';
+      doc.cartList.forEach((arr, index) => {
+        if (arr._id.toString() === goodId) {
+          goodItem = arr;
+          arr.goodNum++;
+          console.log(arr.goodNum);
+        }
+      });
+
+      if (goodItem) {
+        doc.save().then((saveDoc, err) => {
+          console.log(saveDoc);
+          if (saveDoc) {
+            res.json({
+              code: 200,
+              data: '添加成功',
+              msg: 'OK'
+            });
+          } else {
+            res.json({
+              code: 200,
+              data: '添加失败',
+              msg: 'OK'
+            });
+          }
+        })
+      }
+    } else {
+      res.json({
+        code: 600,
+        msg: err1.message
+      })
+    }
+  })
+
+
+  /*User.findOne({userName: userName}, (err1, userDoc) => {
     if (err1) {
       res.json({
         code: 600,
@@ -121,8 +160,7 @@ router.post('/addCart', (req, res) => {
         userDoc.cartList.forEach((arr, index) => {
           if (arr._id.toString() === goodId) {
             goodItem = arr;
-            userDoc.cartList[index].goodNum++
-            //arr.goodNum++;
+            arr.goodNum++;
             console.log(arr.goodNum);
           }
         });
@@ -130,7 +168,7 @@ router.post('/addCart', (req, res) => {
 
         if (goodItem) {
           userDoc.save((err3, doc) => {
-            console.log(doc)
+            console.log(doc);
             if (err3) {
               res.json({
                 code: 600,
@@ -180,7 +218,7 @@ router.post('/addCart', (req, res) => {
 
       }
     }
-  })
+  })*/
 });
 
 
@@ -217,11 +255,6 @@ router.post('/groom', (req, res) => {
 * goods 查询商品列表路由
 * */
 router.post('/goodsList', (req, res) => {
-  /*let page = parseInt(req.query.page);
-  let pageSize = parseInt(req.query.pageSize);
-  let sort = parseInt(req.query.sort);
-  let skip = pageSize * (page - 1);
-  let priceChecked = req.query.priceChecked;*/
   let goodGroom = req.body.goodGroom;
   let goodType = req.body.goodType;
   let pageIndex = parseInt(req.body.pageIndex);
@@ -234,7 +267,7 @@ router.post('/goodsList', (req, res) => {
   } else {
     params.goodType = goodType
   }
-  Goods.find(params).skip(skip).limit(pageSize).exec((err, doc) => {
+  Goods.find(params).skip(skip).limit(pageSize).exec().then((doc, err) => {
     if (err) {
       res.json({
         code: 600,
