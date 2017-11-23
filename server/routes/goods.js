@@ -107,13 +107,13 @@ router.post('/addGood', (req, res, next) => {
 * */
 
 router.post('/addCart', (req, res) => {
-  let userName = req.session.userName || 'fwlst';
+  let userName = req.session.userName;
   let goodId = req.body.goodId;
 
-  User.findOne({userName: userName}).then((doc, err) => {
-    if (doc) {
+  User.findOne({userName: userName}).then((userDoc, err) => {
+    if (userDoc) {
       let goodItem = '';
-      doc.cartList.forEach((arr, index) => {
+      userDoc.cartList.forEach((arr, index) => {
         if (arr._id.toString() === goodId) {
           goodItem = arr;
           arr.goodNum++;
@@ -122,8 +122,7 @@ router.post('/addCart', (req, res) => {
       });
 
       if (goodItem) {
-        doc.save().then((saveDoc, err) => {
-          console.log(saveDoc);
+        userDoc.save().then((saveDoc, err) => {
           if (saveDoc) {
             res.json({
               code: 200,
@@ -138,11 +137,33 @@ router.post('/addCart', (req, res) => {
             });
           }
         })
+      }else {
+        Goods.findOne({_id: goodId}).then((goodDoc,err)=>{
+          if(goodDoc){
+            goodDoc.goodNum = 1;
+            goodDoc.checked = true;
+            userDoc.cartList.push(goodDoc);
+            userDoc.save().then((doc,err) => {
+              if(doc){
+                res.json({
+                  code: 200,
+                  data: '添加成功',
+                  msg: 'OK'
+                });
+              }else {
+                res.json({
+                  code: 600,
+                  msg: err.message
+                })
+              }
+            })
+          }
+        })
       }
     } else {
       res.json({
         code: 600,
-        msg: err1.message
+        msg: err.message
       })
     }
   })

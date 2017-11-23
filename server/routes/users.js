@@ -118,7 +118,7 @@ router.post('/login', (req, res, next) => {
 * */
 router.post('/cartInfo', (req, res, next) => {
   let param = {
-    userName: req.session.userName || 'fwlst',
+    userName: req.session.userName,
   };
 
   User.findOne(param).then((doc,err) => {

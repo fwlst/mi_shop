@@ -7,9 +7,7 @@
 
 
     <ul class="cart_list" v-if="cartNub">
-      <li class="list_item">
-
-      </li>
+      <cart-item v-for="(good,index) in cartInfo" :good="good" :key="index"></cart-item>
     </ul>
 
     <vue-footer :selected="selected" :cartNub="cartNub"></vue-footer>
@@ -19,6 +17,7 @@
 <script>
   import axios from 'axios'
   import vueFooter from '@/components/footer'
+  import cartItem from '@/components/cartItem'
 
   export default {
     name: '',
@@ -64,7 +63,8 @@
 
     },
     components: {
-      vueFooter
+      vueFooter,
+      cartItem
     }
   }
 </script>
